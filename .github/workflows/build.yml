@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        python-version: [3.11, 3.12]
 
     steps:
       - uses: actions/checkout@v2
@@ -33,12 +33,6 @@ jobs:
         run: |
           python -m pytest --cov=yaml_resume --cov-report xml:test-results/coverage.xml --junitxml=test-results/junit.xml
       - name: Fix code coverage paths
-        if: matrix.python-version == 3.9
+        if: matrix.python-version == 3.12
         run: |
           sed -i 's#/home/runner/work/yaml-resume/yaml-resume/#/github/workspace/#g' test-results/coverage.xml
-      - name: SonarCloud Scan
-        if: matrix.python-version == 3.9
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
