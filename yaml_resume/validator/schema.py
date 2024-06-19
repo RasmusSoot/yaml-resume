@@ -1,15 +1,15 @@
 DOB_REGEX = r"(([0-2][0-9])|[1-9]|(3[0-1]))/((1[0-2])|(0?[1-9]))/[0-9]{4}"
 EMAIL_REGEX = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
 PHONE_NUMBER_REGEX = (
-    r"((?:\+|00)[17](?: |\-)?"
-    + r"|(?:\+|00)[1-9]\d{0,2}(?: |\-)?"
-    + r"|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)"
-    + r"|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})"
-    + r"|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))"
+        r"((?:\+|00)[17](?: |\-)?"
+        + r"|(?:\+|00)[1-9]\d{0,2}(?: |\-)?"
+        + r"|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)"
+        + r"|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})"
+        + r"|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))"
 )
 URL_REGEX = (
-    r"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]"
-    + r"|[!*\(\), ]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
+        r"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]"
+        + r"|[!*\(\), ]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
 )
 
 experience = {
@@ -45,7 +45,7 @@ language = {"name": {"type": "string"}, "level": {"type": "string"}}
 profile = {"network": {"type": "string"}, "url": {"type": "string", "regex": URL_REGEX}}
 
 location = {
-    "address": {"type": "string"},
+    "address": {"required": False, "type": "string"},
     "city": {"type": "string"},
     "state": {"required": False, "type": "string"},
     "zip": {"type": "string"},
@@ -58,11 +58,11 @@ contact = {
     "summary": {"required": False, "type": "string"},
     "date_of_birth": {"type": "string", "regex": DOB_REGEX},
     "email": {"type": "string", "regex": EMAIL_REGEX},
-    "phone": {"type": "string", "regex": PHONE_NUMBER_REGEX},
+    "phone": {"required": False, "type": "string", "regex": PHONE_NUMBER_REGEX},
     "location": {
         "type": "dict",
         "required": True,
-        "require_all": True,
+        "require_all": False,
         "schema": location,
     },
 }

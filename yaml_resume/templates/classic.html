@@ -14,8 +14,8 @@
 				</div>
                 <p {% if not image %}style="padding-left: 200px;"{% endif %}>
 				<strong>Born:</strong> 	{{ resume.contact.date_of_birth }}<br/>
-				<strong>Address:</strong> {{ resume.contact.location.address }}, {% if resume.contact.location.zip %}{{ resume.contact.location.zip }} {% endif %}{{ resume.contact.location.city }} {% if resume.contact.location.country %}{{ resume.contact.location.country }}{% endif %}<br/>
-                <strong>Phone:</strong> 	{{ resume.contact.phone }}<br />
+				<strong>Address:</strong> {{ resume.contact.location.address }}{% if resume.contact.location.address %}, {% endif %}{% if resume.contact.location.zip %}{{ resume.contact.location.zip }} {% endif %}{{ resume.contact.location.city }} {% if resume.contact.location.country %}{{ resume.contact.location.country }}{% endif %}<br/>
+                {% if resume.contact.phone %}<strong>Phone:</strong> 	{{ resume.contact.phone }}<br />{% endif %}
                 <strong>Email:</strong> 	<a href="mailto:{{ resume.contact.email }}">{{ resume.contact.email }}</a><br/><br/>
 				{% for p in resume.profiles %}
                 <strong>{{ p.network }}:</strong> 	<a href="{{ p.url }}">{{ p.url }}</a><br />
